@@ -13,12 +13,12 @@ defined. If you are confused by this instruction, please review L4 Problems 10 a
 """
 
 
-def count_bobs(word):
+def count_bobs(string):
     keyword = "bob"
     keyword_length = len(keyword)
     counter = 0
-    for index in range(len(word) - keyword_length + 1):
-        if word[index:index + keyword_length] == keyword:
+    for index in range(len(string) - keyword_length + 1):
+        if string[index:index + keyword_length] == keyword:
             counter += 1
     return counter
 

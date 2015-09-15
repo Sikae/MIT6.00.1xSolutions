@@ -14,9 +14,9 @@ If you are confused by this instruction, please review L4 Problems 10 and 11 bef
 """
 
 
-def count_vowels(word):
+def count_vowels(string):
     counter = 0
-    for letter in word:
+    for letter in string:
         if letter in "aeiou":
             counter += 1
     return counter
