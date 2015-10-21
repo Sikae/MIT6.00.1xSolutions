@@ -23,5 +23,10 @@ def count_bobs(string):
     return counter
 
 
-s = input("Enter a string: ")
-print("Number of times bob occurs is: " + str(count_bobs(s)))
+def main():
+    s = input("Enter a string: ")
+    print("Number of times bob occurs is: " + str(count_bobs(s)))
+
+
+if __name__ == "__main__":
+    main()

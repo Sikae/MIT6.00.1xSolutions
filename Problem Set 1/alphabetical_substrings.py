@@ -32,5 +32,9 @@ def obtain_longest_substring(string):
     return longest_substring
 
 
-s = input("Enter a string: ")
-print("Longest substring in alphabetical order is: " + obtain_longest_substring(s))
+def main():
+    s = input("Enter a string: ")
+    print("Longest substring in alphabetical order is: " + obtain_longest_substring(s))
+
+if __name__ == "__main__":
+    main()

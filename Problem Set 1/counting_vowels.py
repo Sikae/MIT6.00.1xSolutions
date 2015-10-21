@@ -21,5 +21,11 @@ def count_vowels(string):
             counter += 1
     return counter
 
-s = input("Enter a string: ")
-print("Number of vowels: " + str(count_vowels(s)))
+
+def main():
+    s = input("Enter a string: ")
+    print("Number of vowels: " + str(count_vowels(s)))
+
+
+if __name__ == "__main__":
+    main()
