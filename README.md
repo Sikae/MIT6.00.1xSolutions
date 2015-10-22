@@ -14,3 +14,6 @@ Though the course uses Python 2, the solutions provided in this repository were 
 * Paying the Minimum
 * Paying Debt off in a Year
 * Using Bisection Search to Make the Program Faster
+
+## Problem Set 3
+* Radiation Exposure
