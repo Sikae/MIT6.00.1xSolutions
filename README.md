@@ -9,3 +9,8 @@ Though the course uses Python 2, the solutions provided in this repository were 
 * Counting Vowels
 * Counting Bobs
 * Alphabetical Substrings
+
+## Problem Set 2
+* Paying the Minimum
+* Paying Debt off in a Year
+* Using Bisection Search to Make the Program Faster
