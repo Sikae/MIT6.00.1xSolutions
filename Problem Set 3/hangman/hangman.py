@@ -65,7 +65,12 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     """
-    pass
+    guessed_word = ""
+
+    for letter in secret_word:
+        guessed_word += (letter + " ") if letter in letters_guessed else "_ "
+
+    return guessed_word
 
 
 def get_available_letters(letters_guessed):
@@ -107,4 +112,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    secretWord = 'apple'
+    lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
+    print(get_guessed_word(secretWord, lettersGuessed))
