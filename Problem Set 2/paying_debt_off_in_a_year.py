@@ -51,21 +51,29 @@ Updated balance each month = (Monthly unpaid balance) + (Monthly interest rate x
 """
 
 
-def compute_fixed_monthly_payment(balance, annual_interest_rate):
-    fixed_payment = 10
-    original_balance = balance
+def compute_updated_balance(balance, fixed_payment, annual_interest_rate):
     monthly_interest_rate = annual_interest_rate / 12.0
+    monthly_unpaid_balance = balance - fixed_payment
+
+    return monthly_unpaid_balance * (1 + monthly_interest_rate)
+
+
+def compute_balance_after_a_year(balance, fixed_payment, annual_interest_rate):
+    for i in range(12):
+        balance = compute_updated_balance(balance, fixed_payment, annual_interest_rate)
+
+    return balance
+
+
+def compute_fixed_monthly_payment(balance, annual_interest_rate):
+    fixed_payment = 0
 
     while True:
-        for i in range(12):
-            monthly_unpaid_balance = balance - fixed_payment
-            balance = monthly_unpaid_balance * (1 + monthly_interest_rate)
+        fixed_payment += 10
+        balance_after_a_year = compute_balance_after_a_year(balance, fixed_payment, annual_interest_rate)
 
-        if balance <= 0:
+        if balance_after_a_year <= 0:
             return fixed_payment
-        else:
-            balance = original_balance
-            fixed_payment += 10
 
 
 def main():
