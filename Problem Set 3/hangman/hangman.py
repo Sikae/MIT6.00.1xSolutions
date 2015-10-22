@@ -10,6 +10,7 @@
 # (so be sure to read the docstrings!)
 
 import random
+import string
 
 WORD_LIST_FILENAME = "words.txt"
 
@@ -83,8 +84,14 @@ def get_available_letters(letters_guessed):
     returns: string, comprised of letters that represents what letters have not
       yet been guessed.
     """
-    pass
-    
+    available_letters = ""
+
+    for letter in string.ascii_lowercase:
+        if letter not in letters_guessed:
+            available_letters += letter
+
+    return available_letters
+
 
 def hangman(secret_word):
     """
@@ -119,4 +126,4 @@ if __name__ == "__main__":
     # main()
     secretWord = 'apple'
     lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
-    print(get_guessed_word(secretWord, lettersGuessed))
+    print(get_available_letters(lettersGuessed))
