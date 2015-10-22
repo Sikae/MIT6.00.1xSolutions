@@ -13,6 +13,7 @@ import random
 import string
 
 WORD_LIST_FILENAME = "words.txt"
+NUMBER_OF_GUESSES = 8
 
 # Helper Code
 # Load the list of words into the variable wordlist
@@ -93,6 +94,22 @@ def get_available_letters(letters_guessed):
     return available_letters
 
 
+def print_hangman_game_header(secret_word):
+    print("Welcome to the game, Hangman!")
+    print("I am thinking of a word that is " + str(len(secret_word)) + " letters long.")
+
+
+def print_game_result(was_word_guessed, secret_word):
+    if was_word_guessed:
+        print("Congratulations, you won!")
+        return
+    print("Sorry, you ran out of guesses. The word was " + secret_word + ".")
+
+
+def print_line_of_dashes():
+    print("-------------")
+
+
 def hangman(secret_word):
     """
     secretWord: string, the secret word to guess.
@@ -113,7 +130,33 @@ def hangman(secret_word):
 
     Follows the other limitations detailed in the problem write-up.
     """
-    pass
+    mistakes_made = 0
+    letters_guessed = []
+
+    print_hangman_game_header(secret_word)
+
+    while NUMBER_OF_GUESSES - mistakes_made > 0 and not is_word_guessed(secret_word, letters_guessed):
+        print_line_of_dashes()
+        print("You have " + str(NUMBER_OF_GUESSES - mistakes_made) + " guesses left.")
+        print("Available letters: " + get_available_letters(letters_guessed))
+        letter_guessed = input("Please guess a letter: ").lower()
+
+        if letter_guessed in letters_guessed:
+            print("Oops! You've already guessed that letter: " + get_guessed_word(secret_word, letters_guessed))
+            continue
+
+        letters_guessed.append(letter_guessed)
+
+        if letter_guessed in secret_word:
+            print("Good guess:", end=" ")
+        else:
+            print("Oops! That letter is not in my word:", end=" ")
+            mistakes_made += 1
+
+        print(get_guessed_word(secret_word, letters_guessed))
+
+    print_line_of_dashes()
+    print_game_result(is_word_guessed(secret_word, letters_guessed), secret_word)
 
 
 def main():
@@ -123,7 +166,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-    secretWord = 'apple'
-    lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
-    print(get_available_letters(lettersGuessed))
+    main()
