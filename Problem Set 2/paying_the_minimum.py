@@ -44,7 +44,7 @@ def round_number_two_decimals(number):
     return round(number, 2)
 
 
-def get_updated_balance_and_minimum_monthly_payment(balance, annual_interest_rate, monthly_payment_rate):
+def compute_updated_balance_and_minimum_monthly_payment(balance, annual_interest_rate, monthly_payment_rate):
     minimum_monthly_payment = compute_minimum_monthly_payment(monthly_payment_rate, balance)
     updated_balance = compute_updated_balance(balance, minimum_monthly_payment, annual_interest_rate)
 
@@ -52,9 +52,9 @@ def get_updated_balance_and_minimum_monthly_payment(balance, annual_interest_rat
 
 
 def print_monthly_balance(balance, annual_interest_rate, monthly_payment_rate, month):
-    updated_balance, minimum_monthly_payment = get_updated_balance_and_minimum_monthly_payment(balance,
-                                                                                               annual_interest_rate,
-                                                                                               monthly_payment_rate)
+    updated_balance, minimum_monthly_payment = \
+        compute_updated_balance_and_minimum_monthly_payment(balance, annual_interest_rate, monthly_payment_rate)
+
     print("Month: " + str(month))
     print("Minimum monthly payment: " + str(round_number_two_decimals(minimum_monthly_payment)))
     print("Remaining balance: " + str(round_number_two_decimals(updated_balance)))
@@ -64,8 +64,8 @@ def print_balance_after_a_year(balance, annual_interest_rate, monthly_payment_ra
     total_paid = 0
     for month in range(12):
         print_monthly_balance(balance, annual_interest_rate, monthly_payment_rate, month + 1)
-        balance, monthly_payment = get_updated_balance_and_minimum_monthly_payment(balance, annual_interest_rate,
-                                                                                   monthly_payment_rate)
+        balance, monthly_payment = \
+            compute_updated_balance_and_minimum_monthly_payment(balance, annual_interest_rate, monthly_payment_rate)
         total_paid += monthly_payment
 
     print("Total paid: " + str(round_number_two_decimals(total_paid)))
