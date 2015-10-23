@@ -2,6 +2,9 @@ __author__ = 'm'
 
 """
 This program prints the number of times the string "bob" occurs in a string.
+Assume s is a string of lower case characters. For example, if string = 'azcbobobegghakl', then the program prints:
+
+Number of times bob occurs is: 2
 """
 
 

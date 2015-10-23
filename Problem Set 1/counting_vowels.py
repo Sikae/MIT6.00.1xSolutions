@@ -1,7 +1,10 @@
 __author__ = 'm'
 
 """
-This program prints the number of vowels (lowercase) contained in a string.
+This program prints the number of vowels (lowercase) contained in a string. It is assumed string is a string of lower
+case characters. For example, if string = 'azcbobobegghakl', the program prints:
+
+Number of vowels: 5
 """
 
 
