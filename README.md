@@ -18,3 +18,6 @@ Though the course uses Python 2, the solutions provided in this repository were 
 ## Problem Set 3
 * Radiation Exposure
 * Hangman
+
+## Problem Set 4
+* A Word Game
