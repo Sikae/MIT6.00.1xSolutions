@@ -70,6 +70,21 @@ def play_computer_hand(hand, word_list, n):
     print("Total score: " + str(score) + " points.")
 
 
+def get_valid_player():
+    while True:
+        player = input(PLAYER_PROMPT)
+        if player == "c" or player == "u":
+            return player
+        else:
+            print(INVALID_COMMAND_MESSAGE)
+
+
+def perform_play(player, hand, word_list, n):
+    if player == "c":
+        play_computer_hand(hand, word_list, n)
+    else:
+        play_hand(hand, word_list, n)
+
 #
 # Problem #8: Playing a game
 #
@@ -98,16 +113,24 @@ def play_game(word_list):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    # -- Remove this when you code this function
-    print("play_game not yet implemented.")
+    action = get_initial_valid_input()
+
+    while action != "e":
+        if action != "n" and action != "r":
+            print(INVALID_COMMAND_MESSAGE)
+        else:
+            if action == "n":
+                hand = deal_hand(HAND_SIZE)
+            player = get_valid_player()
+            perform_play(player, hand, word_list, HAND_SIZE)
+            print()
+
+        action = input(PLAY_GAME_PROMPT)
 
 
 #
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    # word_list = load_words()
-    # play_game(word_list)
     word_list = load_words()
-    play_computer_hand({'a': 1, 'p': 2, 's': 1, 'e': 1, 'l': 1}, word_list, 6)
+    play_game(word_list)
