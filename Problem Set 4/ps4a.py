@@ -207,6 +207,11 @@ def calculate_hand_len(hand):
     return number_of_letters
 
 
+def print_current_hand(hand):
+    print("Current Hand:", end=" ")
+    display_hand(hand)
+
+
 def play_hand(hand, word_list, n):
     """
     Allows the user to play the given hand, as follows:
@@ -231,9 +236,9 @@ def play_hand(hand, word_list, n):
     """
     score = 0
     while calculate_hand_len(hand):
-        print("Current Hand:", end=" ")
-        display_hand(hand)
+        print_current_hand(hand)
         word = input("Enter word, or a \".\" to indicate that you are finished: ")
+
         if word == ".":
             print("Goodbye!", end=" ")
             break
@@ -245,6 +250,7 @@ def play_hand(hand, word_list, n):
             print("\"" + word + "\" earned " + str(current_score) + " points. Total: " + str(score) + " points.")
         else:
             print("Invalid word, please try again.")
+        print()
 
     if calculate_hand_len(hand) == 0:
         print("\nRun out of letters.", end="")
@@ -272,13 +278,16 @@ def play_game(word_list):
     action = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
 
     # avoids user entering r when he hasn't played before
-    while action == "r":
-        print("You have not played a hand yet. Please play a new hand first!\n")
+    while action != "n" and action != "e":
+        if action == "r":
+            print("You have not played a hand yet. Please play a new hand first!\n")
+        else:
+            print("Invalid command\n")
         action = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
 
     while action != "e":
         if action != "n" and action != "r":
-            print("Invalid command")
+            print("Invalid command\n")
         else:
             if action == "n":
                 hand = deal_hand(HAND_SIZE)

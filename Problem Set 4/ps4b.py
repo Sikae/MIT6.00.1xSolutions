@@ -35,7 +35,7 @@ def get_computer_chosen_word(hand, word_list, n):
 #
 # Problem #7: Computer plays a hand
 #
-def compPlayHand(hand, wordList, n):
+def play_computer_hand(hand, word_list, n):
     """
     Allows the computer to play the given hand, following the same procedure
     as playHand, except instead of the user choosing a word, the computer 
@@ -54,14 +54,27 @@ def compPlayHand(hand, wordList, n):
     wordList: list (string)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    pass
-    
+    score = 0
+    while calculate_hand_len(hand):
+        print_current_hand(hand)
+
+        if get_computer_chosen_word(hand, word_list, n) is None:
+            break
+
+        computer_word = get_computer_chosen_word(hand, word_list, n)
+        current_score = get_word_score(computer_word, n)
+        score += current_score
+        print("\"" + computer_word + "\" earned " + str(current_score) + " points. Total " + str(score) + " points\n")
+        hand = update_hand(hand, computer_word)
+
+    print("Total score: " + str(score) + " points.")
+
+
 #
 # Problem #8: Playing a game
 #
 #
-def play_game(wordList):
+def play_game(word_list):
     """
     Allow the user to play an arbitrary number of hands.
  
@@ -90,10 +103,11 @@ def play_game(wordList):
     print("play_game not yet implemented.")
 
 
-        
 #
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
+    # word_list = load_words()
+    # play_game(word_list)
     word_list = load_words()
-    play_game(word_list)
+    play_computer_hand({'a': 1, 'p': 2, 's': 1, 'e': 1, 'l': 1}, word_list, 6)
