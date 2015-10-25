@@ -23,4 +23,5 @@ Though the course uses Python 2, the solutions provided in this repository were 
 * A Word Game
 
 ## Problem Set 6
-* 
+* Encryption
+* Recursion
