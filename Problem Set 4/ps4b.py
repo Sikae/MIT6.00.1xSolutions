@@ -62,12 +62,11 @@ def play_computer_hand(hand, word_list, n):
             break
 
         computer_word = get_computer_chosen_word(hand, word_list, n)
-        current_score = get_word_score(computer_word, n)
-        score += current_score
-        print("\"" + computer_word + "\" earned " + str(current_score) + " points. Total " + str(score) + " points\n")
+        score += update_and_print_score(score, computer_word, n)
         hand = update_hand(hand, computer_word)
+        print()
 
-    print("Total score: " + str(score) + " points.")
+    print_total_score(score)
 
 
 def get_valid_player():
@@ -84,6 +83,7 @@ def perform_play(player, hand, word_list, n):
         play_computer_hand(hand, word_list, n)
     else:
         play_hand(hand, word_list, n)
+
 
 #
 # Problem #8: Playing a game
@@ -128,9 +128,12 @@ def play_game(word_list):
         action = input(PLAY_GAME_PROMPT)
 
 
+def main():
+    word_list = load_words()
+    play_game(word_list)
+
 #
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    word_list = load_words()
-    play_game(word_list)
+    main()
