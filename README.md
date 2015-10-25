@@ -21,3 +21,6 @@ Though the course uses Python 2, the solutions provided in this repository were 
 
 ## Problem Set 4
 * A Word Game
+
+## Problem Set 6
+* 
