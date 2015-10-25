@@ -5,7 +5,7 @@
 #
 # Problem 3: Recursive String Reversal
 #
-def reverseString(aStr):
+def reverse_string(aStr):
     """
     Given a string, recursively returns a reversed copy of the string.
     For example, if the string is 'abc', the function returns 'cba'.
@@ -15,7 +15,8 @@ def reverseString(aStr):
     aStr: a string
     returns: a reversed string
     """
-    ### TODO.
+    pass
+
 
 #
 # Problem 4: X-ian
@@ -25,23 +26,21 @@ def x_ian(x, word):
     Given a string x, returns True if all the letters in x are
     contained in word in the same order as they appear in x.
 
-    >>> x_ian('eric', 'meritocracy')
-    True
-    >>> x_ian('eric', 'cerium')
-    False
-    >>> x_ian('john', 'mahjong')
-    False
-    
+    x_ian('eric', 'meritocracy') -> True
+    x_ian('eric', 'cerium') -> False
+    x_ian('john', 'mahjong') -> False
+
     x: a string
     word: a string
     returns: True if word is x_ian, False otherwise
     """
-    ###TODO.
+    pass
+
 
 #
 # Problem 5: Typewriter
 #
-def insertNewlines(text, lineLength):
+def insert_new_lines(text, lineLength):
     """
     Given text and a desired line length, wrap the text as a typewriter would.
     Insert a newline character ("\n") after each word that reaches or exceeds
@@ -52,4 +51,4 @@ def insertNewlines(text, lineLength):
         the next word.
     returns: a string, with newline characters inserted appropriately. 
     """
-    ### TODO.
+    pass
