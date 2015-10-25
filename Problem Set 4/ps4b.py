@@ -7,7 +7,7 @@ import time
 # Problem #6: Computer chooses a word
 #
 #
-def compChooseWord(hand, wordList, n):
+def get_computer_chosen_word(hand, word_list, n):
     """
     Given a hand and a wordList, find the word that gives 
     the maximum value score, and return it.
@@ -23,25 +23,13 @@ def compChooseWord(hand, wordList, n):
 
     returns: string or None
     """
-    # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
-    # Create a new variable to store the maximum score seen so far (initially 0)
+    best_word = ""
 
-    # Create a new variable to store the best word seen so far (initially None)  
+    for word in word_list:
+        if is_valid_word(word, hand, word_list) and get_word_score(word, n) > get_word_score(best_word, n):
+            best_word = word
 
-    # For each word in the wordList
-
-        # If you can construct the word from your hand
-        # (hint: you can use isValidWord, or - since you don't really need to test if the word is in the wordList - you can make a similar function that omits that test)
-
-            # Find out how much making that word is worth
-
-            # If the score for that word is higher than your best score
-
-                # Update your best score, and best word accordingly
-
-
-    # return the best word you found.
-    pass
+    return best_word if best_word else None
 
 
 #
