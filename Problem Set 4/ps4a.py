@@ -269,6 +269,19 @@ def play_hand(hand, word_list, n):
     print_total_score(score)
 
 
+def get_initial_valid_input():
+    action = input(PLAY_GAME_PROMPT)
+    # avoids user entering r when he hasn't played before
+    while action != "n" and action != "e":
+        if action == "r":
+            print(NO_HAND_ENTERED_YET)
+        else:
+            print(INVALID_COMMAND_MESSAGE)
+        action = input(PLAY_GAME_PROMPT)
+
+    return action
+
+
 #
 # Problem #5: Playing a game
 # 
@@ -285,26 +298,18 @@ def play_game(word_list):
  
     2) When done playing the hand, repeat from step 1    
     """
-    action = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
-
-    # avoids user entering r when he hasn't played before
-    while action != "n" and action != "e":
-        if action == "r":
-            print("You have not played a hand yet. Please play a new hand first!\n")
-        else:
-            print("Invalid command\n")
-        action = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+    action = get_initial_valid_input()
 
     while action != "e":
         if action != "n" and action != "r":
-            print("Invalid command\n")
+            print(INVALID_COMMAND_MESSAGE)
         else:
             if action == "n":
                 hand = deal_hand(HAND_SIZE)
             play_hand(hand, word_list, HAND_SIZE)
             print()
 
-        action = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        action = input(PLAY_GAME_PROMPT)
 
 
 # Build data structures used for entire session and play game
