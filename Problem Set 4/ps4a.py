@@ -6,7 +6,7 @@
 #
 
 import random
-import string
+from constants import *
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
@@ -212,6 +212,19 @@ def print_current_hand(hand):
     display_hand(hand)
 
 
+def print_total_score(score):
+    print("Total score: " + str(score) + " points.")
+
+
+def update_and_print_score(score, word, n):
+    current_score = get_word_score(word, n)
+    score += current_score
+    print("\"" + word + "\" earned " + str(current_score) + " points.", end=" ")
+    print_total_score(score)
+
+    return score
+
+
 def play_hand(hand, word_list, n):
     """
     Allows the user to play the given hand, as follows:
@@ -237,25 +250,23 @@ def play_hand(hand, word_list, n):
     score = 0
     while calculate_hand_len(hand):
         print_current_hand(hand)
-        word = input("Enter word, or a \".\" to indicate that you are finished: ")
+        word = input(ENTER_WORD_PROMPT)
 
         if word == ".":
-            print("Goodbye!", end=" ")
+            print(BYE, end=" ")
             break
 
         if is_valid_word(word, hand, word_list):
-            current_score = get_word_score(word, n)
-            score += current_score
+            score += update_and_print_score(score, word, n)
             hand = update_hand(hand, word)
-            print("\"" + word + "\" earned " + str(current_score) + " points. Total: " + str(score) + " points.")
         else:
-            print("Invalid word, please try again.")
+            print(INVALID_WORD_MESSAGE)
         print()
 
     if calculate_hand_len(hand) == 0:
-        print("\nRun out of letters.", end="")
+        print(OUT_OF_LETTERS, end=" ")
 
-    print("Total score: " + str(score) + " points.")
+    print_total_score(score)
 
 
 #
@@ -274,7 +285,6 @@ def play_game(word_list):
  
     2) When done playing the hand, repeat from step 1    
     """
-
     action = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
 
     # avoids user entering r when he hasn't played before
