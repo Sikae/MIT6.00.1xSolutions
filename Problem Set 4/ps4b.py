@@ -73,7 +73,7 @@ def compPlayHand(hand, wordList, n):
 # Problem #8: Playing a game
 #
 #
-def playGame(wordList):
+def play_game(wordList):
     """
     Allow the user to play an arbitrary number of hands.
  
@@ -99,7 +99,7 @@ def playGame(wordList):
     """
     # TO DO... <-- Remove this comment when you code this function
     # -- Remove this when you code this function
-    print("playGame not yet implemented.")
+    print("play_game not yet implemented.")
 
 
         
@@ -107,5 +107,5 @@ def playGame(wordList):
 # Build data structures used for entire session and play game
 #
 if __name__ == '__main__':
-    wordList = loadWords()
-    playGame(wordList)
+    word_list = load_words()
+    play_game(word_list)
