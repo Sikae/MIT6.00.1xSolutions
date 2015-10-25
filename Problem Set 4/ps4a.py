@@ -79,7 +79,13 @@ def get_word_score(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    pass
+    score = 0
+
+    for letter in word:
+        score += SCRABBLE_LETTER_VALUES[letter]
+
+    return score * len(word) + 50 * (len(word) == n)
+
 
 #
 # Problem #2: Make sure you understand how this function works and what it does!
@@ -98,7 +104,7 @@ def display_hand(hand):
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
-            print(letter, end="")  # print all on the same line
+            print(letter, end=" ")  # print all on the same line
     print()  # print an empty line
 
 
@@ -121,11 +127,11 @@ def deal_hand(n):
     num_vowels = n / 3
 
     for i in range(num_vowels):
-        x = VOWELS[random.randrange(0, len(VOWELS))]
+        x = VOWELS[random.randrange(len(VOWELS))]
         hand[x] = hand.get(x, 0) + 1
 
     for i in range(num_vowels, n):
-        x = CONSONANTS[random.randrange(0, len(CONSONANTS))]
+        x = CONSONANTS[random.randrange(len(CONSONANTS))]
         hand[x] = hand.get(x, 0) + 1
 
     return hand
@@ -150,8 +156,13 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    pass
+    updated_hand = hand.copy()
+    letter_frequency = get_frequency_dict(word)
+
+    for letter in letter_frequency:
+        updated_hand[letter] -= letter_frequency[letter]
+
+    return updated_hand
 
 
 #
@@ -168,8 +179,13 @@ def is_valid_word(word, hand, word_list):
     hand: dictionary (string -> int)
     word_list: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    pass
+    letter_frequency = get_frequency_dict(word)
+
+    for letter in letter_frequency:
+        if hand.get(letter, 0) < letter_frequency[letter]:
+            return False
+
+    return word in word_list
 
 
 #

@@ -100,7 +100,7 @@ def test_update_hand():
 
         return  # exit function
 
-    print("SUCCESS: test_updateHand()")
+    print("SUCCESS: test_update_hand()")
 
 
 # end of test_updateHand
@@ -190,7 +190,7 @@ def test_is_valid_word(word_list):
         failure = True
 
     if not failure:
-        print("SUCCESS: test_isValidWord()")
+        print("SUCCESS: test_is_valid_word()")
 
 
 wordList = load_words()
@@ -198,10 +198,10 @@ print("----------------------------------------------------------------------")
 print("Testing get_word_score...")
 test_get_word_score()
 print("----------------------------------------------------------------------")
-print("Testing updateHand...")
+print("Testing update_hand...")
 test_update_hand()
 print("----------------------------------------------------------------------")
-print("Testing isValidWord...")
+print("Testing is_valid_word...")
 word_list = load_words()
 test_is_valid_word(word_list)
 print("----------------------------------------------------------------------")
