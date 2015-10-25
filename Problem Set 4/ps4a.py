@@ -312,8 +312,10 @@ def play_game(word_list):
         action = input(PLAY_GAME_PROMPT)
 
 
-# Build data structures used for entire session and play game
-#
-if __name__ == '__main__':
+def main():
     word_list = load_words()
     play_game(word_list)
+
+
+if __name__ == '__main__':
+    main()
