@@ -127,10 +127,18 @@ def apply_coder(text, coder):
     coder: dict with mappings of characters to shifted characters
     returns: text after mapping coder chars to original text
     """
-    return "Not yet implemented."  # Remove this comment when you code the function
+    cyphertext = ""
+
+    for letter in text:
+        if letter in string.ascii_letters:
+            cyphertext += coder[letter]
+        else:
+            cyphertext += letter
+
+    return cyphertext
 
 
-def apply_shifts(text, shift):
+def apply_shift(text, shift):
     """
     Given a text, returns a new text Caesar shifted by the given shift
     offset. Lower case letters should remain lower case, upper case
@@ -141,8 +149,7 @@ def apply_shifts(text, shift):
     shift: amount to shift the text (0 <= int < 26)
     returns: text after being shifted by specified amount.
     """
-    ### HINT: This is a wrapper function.
-    return "Not yet implemented."  # Remove this comment when you code the function
+    return apply_coder(text, build_coder(shift))
 
 
 #
@@ -183,6 +190,7 @@ def main():
     # To test decrypt_story, comment the above four lines and uncomment this line:
     #    decrypt_story()
 
+
 if __name__ == '__main__':
-    print(build_coder(3))
-    print(build_coder(9))
+    print(apply_shift('This is a test.', 8))
+    print(apply_shift('Bpqa qa i bmab.', 18))
