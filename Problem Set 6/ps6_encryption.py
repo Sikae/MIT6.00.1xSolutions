@@ -73,7 +73,7 @@ def random_scrambled(word_list, n):
     """
     s = random_string(word_list, n) + " "
     shifts = [(i, random.randint(0, 25)) for i in range(len(s)) if s[i - 1] == ' ']
-    return apply_shifts(s, shifts)[:-1]
+    return apply_shift(s, shifts)[:-1]
 
 
 def get_story_string():
@@ -152,17 +152,39 @@ def apply_shift(text, shift):
     return apply_coder(text, build_coder(shift))
 
 
+def get_number_of_valid_words(words, word_list):
+    number_of_valid_words = 0
+
+    for word in words:
+        if is_word(word_list, word):
+            number_of_valid_words += 1
+
+    return number_of_valid_words
+
+
 #
 # Problem 2: Decryption
 #
-def find_best_shift(wordList, text):
+def find_best_shift(word_list, text):
     """
     Finds a shift key that can decrypt the encoded text.
 
     text: string
     returns: 0 <= int < 26
     """
-    return "Not yet implemented."  # Remove this comment when you code the function
+    best_shift = 0
+    max_number_of_valid_words = 0
+
+    for shift in range(26):
+        deciphered_text = apply_shift(text, shift)
+        words = deciphered_text.split()
+        number_of_valid_words = get_number_of_valid_words(words, word_list)
+
+        if number_of_valid_words > max_number_of_valid_words:
+            best_shift = shift
+            max_number_of_valid_words = number_of_valid_words
+
+    return best_shift
 
 
 def decrypt_story():
@@ -174,7 +196,11 @@ def decrypt_story():
 
     returns: string - story in plain text
     """
-    return "Not yet implemented."  # Remove this comment when you code the function
+    story = get_story_string()
+    word_list = load_words()
+    best_shift = find_best_shift(word_list, story)
+
+    return apply_shift(story, best_shift)
 
 
 #
@@ -182,15 +208,8 @@ def decrypt_story():
 #
 
 def main():
-    # To test find_best_shift:
-    word_list = load_words()
-    s = apply_shifts('Hello, world!', 8)
-    best_shift = find_best_shift(word_list, s)
-    assert apply_shifts(s, best_shift) == 'Hello, world!'
-    # To test decrypt_story, comment the above four lines and uncomment this line:
-    #    decrypt_story()
+    print(decrypt_story())
 
 
 if __name__ == '__main__':
-    print(apply_shift('This is a test.', 8))
-    print(apply_shift('Bpqa qa i bmab.', 18))
+    main()
