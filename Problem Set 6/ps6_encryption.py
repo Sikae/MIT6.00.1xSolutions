@@ -90,6 +90,19 @@ def get_story_string():
 #
 # Problem 1: Encryption
 #
+
+def shift_lower_case_letters(shifted_dictionary, shift):
+    lower_case_letters = string.ascii_lowercase
+    for i in range(len(lower_case_letters)):
+        shifted_dictionary[lower_case_letters[i]] = lower_case_letters[(i + shift) % len(lower_case_letters)]
+
+
+def shift_upper_case_letters(shifted_dictionary, shift):
+    upper_case_letters = string.ascii_uppercase
+    for i in range(len(upper_case_letters)):
+        shifted_dictionary[upper_case_letters[i]] = upper_case_letters[(i + shift) % len(upper_case_letters)]
+
+
 def build_coder(shift):
     """
     Returns a dict that can apply a Caesar cipher to a letter.
@@ -99,8 +112,11 @@ def build_coder(shift):
     shift: 0 <= int < 26
     returns: dict
     """
-    ### TODO.
-    return "Not yet implemented."  # Remove this comment when you code the function
+    shifted_dictionary = {}
+    shift_lower_case_letters(shifted_dictionary, shift)
+    shift_upper_case_letters(shifted_dictionary, shift)
+
+    return shifted_dictionary
 
 
 def apply_coder(text, coder):
@@ -111,7 +127,6 @@ def apply_coder(text, coder):
     coder: dict with mappings of characters to shifted characters
     returns: text after mapping coder chars to original text
     """
-    ### TODO.
     return "Not yet implemented."  # Remove this comment when you code the function
 
 
@@ -126,7 +141,6 @@ def apply_shifts(text, shift):
     shift: amount to shift the text (0 <= int < 26)
     returns: text after being shifted by specified amount.
     """
-    ### TODO.
     ### HINT: This is a wrapper function.
     return "Not yet implemented."  # Remove this comment when you code the function
 
@@ -141,7 +155,6 @@ def find_best_shift(wordList, text):
     text: string
     returns: 0 <= int < 26
     """
-    ### TODO
     return "Not yet implemented."  # Remove this comment when you code the function
 
 
@@ -154,7 +167,6 @@ def decrypt_story():
 
     returns: string - story in plain text
     """
-    ### TODO.
     return "Not yet implemented."  # Remove this comment when you code the function
 
 
@@ -162,11 +174,15 @@ def decrypt_story():
 # Build data structures used for entire session and run encryption
 #
 
-if __name__ == '__main__':
+def main():
     # To test find_best_shift:
-    wordList = load_words()
+    word_list = load_words()
     s = apply_shifts('Hello, world!', 8)
-    bestShift = find_best_shift(wordList, s)
-    assert apply_shifts(s, bestShift) == 'Hello, world!'
+    best_shift = find_best_shift(word_list, s)
+    assert apply_shifts(s, best_shift) == 'Hello, world!'
     # To test decrypt_story, comment the above four lines and uncomment this line:
     #    decrypt_story()
+
+if __name__ == '__main__':
+    print(build_coder(3))
+    print(build_coder(9))
