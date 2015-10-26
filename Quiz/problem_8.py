@@ -13,7 +13,6 @@ def satisfies_f(L):
             that f(s) returns True, and no other elements
     Returns the length of L after mutation
     """
-
     for i in range(len(L)):
         if not f(L[i]):
             L[i] = None
@@ -25,7 +24,3 @@ def satisfies_f(L):
             break
 
     return len(L)
-
-L = ['a', 'b', 'a']
-print(satisfies_f(L))
-print(L)
