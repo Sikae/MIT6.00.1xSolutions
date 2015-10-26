@@ -39,7 +39,13 @@ def x_ian(x, word):
     word: a string
     returns: True if word is x_ian, False otherwise
     """
-    
+    if len(x) == 1:
+        return x in word
+
+    if x[0] in word:
+        return x_ian(x[1:], word[word.index(x[0]) + 1:])
+
+    return False
 
 
 #
@@ -61,6 +67,10 @@ def insert_new_lines(text, lineLength):
 
 def main():
     print(reverse_string("Hello"))
+    print(x_ian('eric', 'meritocracy'))
+    print(x_ian('eric', 'cerium'))
+    print(x_ian('john', 'mahjong'))
+    print(x_ian("roberto", "crooooootttttbpppefadfdarsssst111oppp"))
 
 if __name__ == '__main__':
     main()
