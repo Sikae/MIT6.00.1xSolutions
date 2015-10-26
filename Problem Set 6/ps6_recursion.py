@@ -66,9 +66,12 @@ def insert_new_lines(text, line_length):
     if len(text) <= line_length:
         return text
 
+    # when the last element of the line is not a letter, i.e., the desired line length is reached without exceeding
     if text[line_length - 1] not in string.ascii_letters:
         return text[:line_length] + "\n" + insert_new_lines(text[line_length:], line_length)
 
+    # when the desired line length is exceeded, last word should be included in this line
+    # the exception handling is used to avoid an error when working with the last text line
     try:
         last_index = line_length + text[line_length:].index(" ")
     except ValueError:
