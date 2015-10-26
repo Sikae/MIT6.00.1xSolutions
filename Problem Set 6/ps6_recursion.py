@@ -5,17 +5,22 @@
 #
 # Problem 3: Recursive String Reversal
 #
-def reverse_string(aStr):
+
+
+def reverse_string(string):
     """
     Given a string, recursively returns a reversed copy of the string.
     For example, if the string is 'abc', the function returns 'cba'.
     The only string operations you are allowed to use are indexing,
     slicing, and concatenation.
     
-    aStr: a string
+    string: a string
     returns: a reversed string
     """
-    pass
+    if len(string) == 1:
+        return string
+
+    return string[-1] + reverse_string(string[:-1])
 
 
 #
@@ -34,7 +39,7 @@ def x_ian(x, word):
     word: a string
     returns: True if word is x_ian, False otherwise
     """
-    pass
+    
 
 
 #
@@ -52,3 +57,10 @@ def insert_new_lines(text, lineLength):
     returns: a string, with newline characters inserted appropriately. 
     """
     pass
+
+
+def main():
+    print(reverse_string("Hello"))
+
+if __name__ == '__main__':
+    main()
