@@ -13,13 +13,9 @@ def satisfies_f(L):
             that f(s) returns True, and no other elements
     Returns the length of L after mutation
     """
-    bool_list = []
 
-    for e in L:
-        bool_list.append(f(e))
-
-    for i in range(len(bool_list)):
-        if not bool_list[i]:
+    for i in range(len(L)):
+        if not f(L[i]):
             L[i] = None
 
     while True:
