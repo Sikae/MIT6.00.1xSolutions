@@ -25,3 +25,10 @@ Though the course uses Python 2, the solutions provided in this repository were 
 ## Problem Set 6
 * Encryption
 * Recursion
+
+## Quiz
+* Problem 4
+* Problem 5
+* Problem 6
+* Problem 7
+* Problem 8
