@@ -52,31 +52,22 @@ def choose_word(word_list):
 
 def is_word_guessed(secret_word, letters_guessed):
     """
-    secretWord: string, the word the user is guessing
-    lettersGuessed: list, what letters have been guessed so far
+    secret_word: string, the word the user is guessing
+    letters_guessed: list, what letters have been guessed so far
     returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
     """
-    for letter in secret_word:
-        if letter not in letters_guessed:
-            return False
-
-    return True
+    pass
 
 
 def get_guessed_word(secret_word, letters_guessed):
     """
-    secretWord: string, the word the user is guessing
+    secret_word: string, the word the user is guessing
     lettersGuessed: list, what letters have been guessed so far
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     """
-    guessed_word = ""
-
-    for letter in secret_word:
-        guessed_word += (letter + " ") if letter in letters_guessed else "_ "
-
-    return guessed_word
+    pass
 
 
 def get_available_letters(letters_guessed):
@@ -85,30 +76,7 @@ def get_available_letters(letters_guessed):
     returns: string, comprised of letters that represents what letters have not
       yet been guessed.
     """
-    available_letters = ""
-
-    for letter in string.ascii_lowercase:
-        if letter not in letters_guessed:
-            available_letters += letter
-
-    return available_letters
-
-
-def print_hangman_game_header(secret_word):
-    print("Welcome to the game, Hangman!")
-    print("I am thinking of a word that is " + str(len(secret_word)) + " letters long.")
-
-
-def print_game_result(was_word_guessed, secret_word):
-    if was_word_guessed:
-        print("Congratulations, you won!")
-        return
-    print("Sorry, you ran out of guesses. The word was " + secret_word + ".")
-
-
-def print_line_of_dashes():
-    print("-------------")
-
+    pass
 
 def hangman(secret_word):
     """
@@ -130,33 +98,7 @@ def hangman(secret_word):
 
     Follows the other limitations detailed in the problem write-up.
     """
-    mistakes_made = 0
-    letters_guessed = []
-
-    print_hangman_game_header(secret_word)
-
-    while NUMBER_OF_GUESSES - mistakes_made > 0 and not is_word_guessed(secret_word, letters_guessed):
-        print_line_of_dashes()
-        print("You have " + str(NUMBER_OF_GUESSES - mistakes_made) + " guesses left.")
-        print("Available letters: " + get_available_letters(letters_guessed))
-        letter_guessed = input("Please guess a letter: ").lower()
-
-        if letter_guessed in letters_guessed:
-            print("Oops! You've already guessed that letter: " + get_guessed_word(secret_word, letters_guessed))
-            continue
-
-        letters_guessed.append(letter_guessed)
-
-        if letter_guessed in secret_word:
-            print("Good guess:", end=" ")
-        else:
-            print("Oops! That letter is not in my word:", end=" ")
-            mistakes_made += 1
-
-        print(get_guessed_word(secret_word, letters_guessed))
-
-    print_line_of_dashes()
-    print_game_result(is_word_guessed(secret_word, letters_guessed), secret_word)
+    pass
 
 
 def main():
