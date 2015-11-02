@@ -6,7 +6,10 @@ spam = ['apples', 'bananas', 'tofu', 'cats']
 def separate_items_by_commas(items):
     string = ""
     for i in items:
-        string += i + ", "
+        if i == items[-1]:
+            string += " and " + i + "."
+        else:
+            string += i + ","
     return string
 
 
