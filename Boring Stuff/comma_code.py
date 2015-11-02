@@ -7,7 +7,7 @@ def separate_items_by_commas(items):
     string = ""
     for i in items:
         string += i + ", "
-    return print(string)
+    return string
 
 
-separate_items_by_commas(spam)
+print(separate_items_by_commas(spam))
