@@ -1,3 +1,4 @@
+# comma_code.py - separate by commas a list of strings.
 __author__ = 'DELL'
 
 spam = ['apples', 'bananas', 'tofu', 'cats']
