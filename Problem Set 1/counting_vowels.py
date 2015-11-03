@@ -9,11 +9,7 @@ Number of vowels: 5
 
 
 def count_vowels(string):
-    counter = 0
-    for letter in string:
-        if letter in "aeiou":
-            counter += 1
-    return counter
+    pass
 
 
 def main():
