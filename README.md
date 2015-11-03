@@ -26,6 +26,9 @@ Though the course uses Python 2, the solutions provided in this repository were 
 * Encryption
 * Recursion
 
+## Problem Set 7
+* Monitor news feeds over the Internet
+
 ## Quiz
 * Problem 4
 * Problem 5
