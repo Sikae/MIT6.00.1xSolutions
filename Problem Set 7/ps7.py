@@ -89,7 +89,28 @@ class Trigger(object):
 # Whole Word Triggers
 # Problems 2-5
 
-# TODO: WordTrigger
+def replace_punctuation_mark_with_a_space(text):
+    for punctuation_mark in string.punctuation:
+        text = text.replace(punctuation_mark, " ")
+    return text
+
+
+class WordTrigger(Trigger):
+    def __init__(self, word):
+        self.word = word.lower()
+
+    def isWordIn(self, text):
+        text_witout_punctuation = replace_punctuation_mark_with_a_space(text.lower())
+        text_word = text_witout_punctuation.split()
+        for word in text_word:
+            if word == self.word:
+                return True
+        return False
+
+
+
+
+
 
 # TODO: TitleTrigger
 # TODO: SubjectTrigger
@@ -259,7 +280,8 @@ def main_thread(master):
 
 
 if __name__ == '__main__':
-    root = Tk()
-    root.title("Some RSS parser")
-    thread.start_new_thread(main_thread, (root,))
-    root.mainloop()
+    # root = Tk()
+    # root.title("Some RSS parser")
+    # thread.start_new_thread(main_thread, (root,))
+    # root.mainloop()
+    print(replace_punctuation_mark_with_a_space(r'"Soft!" he exclaimed as he threw the football.'))
