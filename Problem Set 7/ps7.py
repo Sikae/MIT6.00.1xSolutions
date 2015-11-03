@@ -90,7 +90,7 @@ class Trigger(object):
 # Filtering
 #======================
 
-def filterStories(stories, triggerlist):
+def filter_stories(stories, triggerlist):
     """
     Takes in a list of NewsStory instances.
 
@@ -105,7 +105,7 @@ def filterStories(stories, triggerlist):
 # User-Specified Triggers
 #======================
 
-def makeTrigger(triggerMap, triggerType, params, name):
+def make_trigger(triggerMap, triggerType, params, name):
     """
     Takes in a map of names to trigger instance, the type of trigger to make,
     and the list of parameters to the constructor, and adds a new trigger
@@ -123,7 +123,7 @@ def makeTrigger(triggerMap, triggerType, params, name):
     # TODO: Problem 11
 
 
-def readTriggerConfig(filename):
+def read_trigger_config(filename):
     """
     Returns a list of trigger objects
     that correspond to the rules set
@@ -152,7 +152,7 @@ def readTriggerConfig(filename):
 
         # Making a new trigger
         if linesplit[0] != "ADD":
-            trigger = makeTrigger(triggerMap, linesplit[1],
+            trigger = make_trigger(triggerMap, linesplit[1],
                                   linesplit[2:], linesplit[0])
 
         # Add the triggers to the list
@@ -179,8 +179,8 @@ def main_thread(master):
         triggerlist = [t1, t4]
         
         # TODO: Problem 11
-        # After implementing makeTrigger, uncomment the line below:
-        # triggerlist = readTriggerConfig("triggers.txt")
+        # After implementing make_trigger, uncomment the line below:
+        # triggerlist = read_trigger_config("triggers.txt")
 
         # **** from here down is about drawing ****
         frame = Frame(master)
@@ -219,7 +219,7 @@ def main_thread(master):
             stories.extend(process("http://rss.news.yahoo.com/rss/topstories"))
 
             # Process the stories
-            stories = filterStories(stories, triggerlist)
+            stories = filter_stories(stories, triggerlist)
 
             map(get_cont, stories)
             scrollbar.config(command=cont.yview)

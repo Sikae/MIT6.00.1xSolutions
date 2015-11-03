@@ -173,10 +173,10 @@ class ProblemSet7(unittest.TestCase):
 
         triggers = [pt, self.tt, self.ft]
         stories = [a, b, c, noa, nob, noc]
-        filteredStories = filterStories(stories, triggers)
+        filteredStories = filter_stories(stories, triggers)
         for story in stories:
             self.assertTrue(story in filteredStories)
-        filteredStories = filterStories(stories, [self.ft])
+        filteredStories = filter_stories(stories, [self.ft])
         self.assertEquals(len(filteredStories), 0)
 
     def test8FilterStories2(self):
@@ -195,7 +195,7 @@ class ProblemSet7(unittest.TestCase):
                 return story == self.story
         triggers = [MatchTrigger(a), MatchTrigger(nob)]
         stories = [a, b, c, noa, nob, noc]
-        filteredStories = filterStories(stories, triggers)
+        filteredStories = filter_stories(stories, triggers)
         self.assertTrue(a in filteredStories)
         self.assertTrue(nob in filteredStories)
         self.assertEquals(2, len(filteredStories))
