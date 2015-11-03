@@ -91,17 +91,6 @@ def get_story_string():
 # Problem 1: Encryption
 #
 
-def shift_lower_case_letters(shifted_dictionary, shift):
-    lower_case_letters = string.ascii_lowercase
-    for i in range(len(lower_case_letters)):
-        shifted_dictionary[lower_case_letters[i]] = lower_case_letters[(i + shift) % len(lower_case_letters)]
-
-
-def shift_upper_case_letters(shifted_dictionary, shift):
-    upper_case_letters = string.ascii_uppercase
-    for i in range(len(upper_case_letters)):
-        shifted_dictionary[upper_case_letters[i]] = upper_case_letters[(i + shift) % len(upper_case_letters)]
-
 
 def build_coder(shift):
     """
@@ -112,11 +101,7 @@ def build_coder(shift):
     shift: 0 <= int < 26
     returns: dict
     """
-    shifted_dictionary = {}
-    shift_lower_case_letters(shifted_dictionary, shift)
-    shift_upper_case_letters(shifted_dictionary, shift)
-
-    return shifted_dictionary
+    pass
 
 
 def apply_coder(text, coder):
@@ -127,15 +112,7 @@ def apply_coder(text, coder):
     coder: dict with mappings of characters to shifted characters
     returns: text after mapping coder chars to original text
     """
-    cyphertext = ""
-
-    for letter in text:
-        if letter in string.ascii_letters:
-            cyphertext += coder[letter]
-        else:
-            cyphertext += letter
-
-    return cyphertext
+    pass
 
 
 def apply_shift(text, shift):
@@ -149,17 +126,7 @@ def apply_shift(text, shift):
     shift: amount to shift the text (0 <= int < 26)
     returns: text after being shifted by specified amount.
     """
-    return apply_coder(text, build_coder(shift))
-
-
-def get_number_of_valid_words(words, word_list):
-    number_of_valid_words = 0
-
-    for word in words:
-        if is_word(word_list, word):
-            number_of_valid_words += 1
-
-    return number_of_valid_words
+    pass
 
 
 #
@@ -172,19 +139,7 @@ def find_best_shift(word_list, text):
     text: string
     returns: 0 <= int < 26
     """
-    best_shift = 0
-    max_number_of_valid_words = 0
-
-    for shift in range(26):
-        deciphered_text = apply_shift(text, shift)
-        words = deciphered_text.split()
-        number_of_valid_words = get_number_of_valid_words(words, word_list)
-
-        if number_of_valid_words > max_number_of_valid_words:
-            best_shift = shift
-            max_number_of_valid_words = number_of_valid_words
-
-    return best_shift
+    pass
 
 
 def decrypt_story():
@@ -196,12 +151,7 @@ def decrypt_story():
 
     returns: string - story in plain text
     """
-    story = get_story_string()
-    word_list = load_words()
-    best_shift = find_best_shift(word_list, story)
-
-    return apply_shift(story, best_shift)
-
+    pass
 
 #
 # Build data structures used for entire session and run encryption
