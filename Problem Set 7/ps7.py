@@ -128,15 +128,44 @@ class SummaryTrigger(WordTrigger):
 # Composite Triggers
 # Problems 6-8
 
-# TODO: NotTrigger
-# TODO: AndTrigger
-# TODO: OrTrigger
+class NotTrigger(Trigger):
+    def __init__(self, trigger):
+        self.trigger = trigger
+
+    def evaluate(self, story):
+        return not self.trigger.evaluate(story)
+
+
+class AndTrigger(Trigger):
+    def __init__(self, trigger0, trigger1):
+        self.trigger0 = trigger0
+        self.trigger1 = trigger1
+
+    def evaluate(self, story):
+        return self.trigger0.evaluate(story) and self.trigger1.evaluate(story)
+
+
+class OrTrigger(Trigger):
+    def __init__(self, trigger0, trigger1):
+        self.trigger0 = trigger0
+        self.trigger1 = trigger1
+
+    def evaluate(self, story):
+        return self.trigger0.evaluate(story) or self.trigger1.evaluate(story)
 
 
 # Phrase Trigger
 # Question 9
 
-# TODO: PhraseTrigger
+class PhraseTrigger(Trigger):
+    def __init__(self, phrase):
+        self.phrase = phrase
+
+    def evaluate(self, story):
+        is_phrase_in_title = self.phrase in story.get_title()
+        is_phrase_in_subject = self.phrase in story.get_subject()
+        is_phrase_in_summary = self.phrase in story.get_summary()
+        return is_phrase_in_title or is_phrase_in_subject  or is_phrase_in_summary
 
 
 # ======================
@@ -288,10 +317,7 @@ def main_thread(master):
 
 
 if __name__ == '__main__':
-    # root = Tk()
-    # root.title("Some RSS parser")
-    # thread.start_new_thread(main_thread, (root,))
-    # root.mainloop()
-    print(replace_punctuation_mark_with_a_space(r'Microsoft recently released the Windows 8 Consumer Preview.'))
-    word_trigger = WordTrigger("soft")
-    print(word_trigger.isWordIn("Microsoft recently released the Windows 8 Consumer Preview."))
+    root = Tk()
+    root.title("Some RSS parser")
+    thread.start_new_thread(main_thread, (root,))
+    root.mainloop()
