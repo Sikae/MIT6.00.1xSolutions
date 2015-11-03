@@ -18,10 +18,7 @@ def reverse_string(character_string):
     character_string: a character_string
     returns: a reversed character_string
     """
-    if len(character_string) == 1:
-        return character_string
-
-    return character_string[-1] + reverse_string(character_string[:-1])
+    pass
 
 
 #
@@ -40,13 +37,7 @@ def x_ian(x, word):
     word: a string
     returns: True if word is x_ian, False otherwise
     """
-    if len(x) == 1:
-        return x in word
-
-    if x[0] in word:
-        return x_ian(x[1:], word[word.index(x[0]) + 1:])
-
-    return False
+    pass
 
 
 #
@@ -63,21 +54,7 @@ def insert_new_lines(text, line_length):
         the next word.
     returns: a string, with newline characters inserted appropriately. 
     """
-    if len(text) <= line_length:
-        return text
-
-    # when the last element of the line is not a letter, i.e., the desired line length is reached without exceeding
-    if text[line_length - 1] not in string.ascii_letters:
-        return text[:line_length] + "\n" + insert_new_lines(text[line_length:], line_length)
-
-    # when the desired line length is exceeded, last word should be included in this line
-    # the exception handling is used to avoid an error when working with the last text line
-    try:
-        last_index = line_length + text[line_length:].index(" ")
-    except ValueError:
-        last_index = len(text) - 1
-
-    return text[:last_index + 1] + "\n" + insert_new_lines(text[last_index + 1:], line_length)
+    pass
 
 
 def main():

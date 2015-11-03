@@ -9,15 +9,7 @@ Longest substring in alphabetical order is: beggh
 
 
 def obtain_longest_substring(string):
-    current_substring = longest_substring = string[0]
-    for letter in string[1:]:
-        if letter >= current_substring[-1]:
-            current_substring += letter
-            if len(current_substring) > len(longest_substring):
-                longest_substring = current_substring
-        else:
-            current_substring = letter
-    return longest_substring
+    pass
 
 
 def main():

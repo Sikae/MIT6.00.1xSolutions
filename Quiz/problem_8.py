@@ -13,14 +13,4 @@ def satisfies_f(L):
             that f(s) returns True, and no other elements
     Returns the length of L after mutation
     """
-    for i in range(len(L)):
-        if not f(L[i]):
-            L[i] = None
-
-    while True:
-        try:
-            L.remove(None)
-        except ValueError:
-            break
-
-    return len(L)
+    pass

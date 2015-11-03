@@ -79,12 +79,7 @@ def get_word_score(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    score = 0
-
-    for letter in word:
-        score += SCRABBLE_LETTER_VALUES[letter]
-
-    return score * len(word) + 50 * (len(word) == n)
+    pass
 
 
 #
@@ -95,17 +90,14 @@ def display_hand(hand):
     Displays the letters currently in the hand.
 
     For example:
-    >>> display_hand({'a':1, 'x':2, 'l':3, 'e':1})
+    display_hand({'a':1, 'x':2, 'l':3, 'e':1})
     Should print out something like:
        a x x l l l e
     The order of the letters is unimportant.
 
     hand: dictionary (string -> int)
     """
-    for letter in hand.keys():
-        for j in range(hand[letter]):
-            print(letter, end=" ")  # print all on the same line
-    print()  # print an empty line
+    pass
 
 
 #
@@ -123,18 +115,7 @@ def deal_hand(n):
     n: int >= 0
     returns: dictionary (string -> int)
     """
-    hand = {}
-    num_vowels = n // 3
-
-    for i in range(num_vowels):
-        x = VOWELS[random.randrange(len(VOWELS))]
-        hand[x] = hand.get(x, 0) + 1
-
-    for i in range(num_vowels, n):
-        x = CONSONANTS[random.randrange(len(CONSONANTS))]
-        hand[x] = hand.get(x, 0) + 1
-
-    return hand
+    pass
 
 
 #
@@ -156,13 +137,7 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    updated_hand = hand.copy()
-    letter_frequency = get_frequency_dict(word)
-
-    for letter in letter_frequency:
-        updated_hand[letter] -= letter_frequency[letter]
-
-    return updated_hand
+    pass
 
 
 #
@@ -179,13 +154,7 @@ def is_valid_word(word, hand, word_list):
     hand: dictionary (string -> int)
     word_list: list of lowercase strings
     """
-    letter_frequency = get_frequency_dict(word)
-
-    for letter in letter_frequency:
-        if hand.get(letter, 0) < letter_frequency[letter]:
-            return False
-
-    return word in word_list
+    pass
 
 
 #
@@ -199,30 +168,7 @@ def calculate_hand_len(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    number_of_letters = 0
-
-    for letter in hand:
-        number_of_letters += hand[letter]
-
-    return number_of_letters
-
-
-def print_current_hand(hand):
-    print("Current Hand:", end=" ")
-    display_hand(hand)
-
-
-def print_total_score(score):
-    print("Total score: " + str(score) + " points.")
-
-
-def update_and_print_score(score, word, n):
-    current_score = get_word_score(word, n)
-    score += current_score
-    print("\"" + word + "\" earned " + str(current_score) + " points.", end=" ")
-    print_total_score(score)
-
-    return score
+    pass
 
 
 def play_hand(hand, word_list, n):
@@ -247,39 +193,7 @@ def play_hand(hand, word_list, n):
       n: integer (HAND_SIZE; i.e., hand size required for additional points)
       
     """
-    score = 0
-    while calculate_hand_len(hand):
-        print_current_hand(hand)
-        word = input(ENTER_WORD_PROMPT)
-
-        if word == ".":
-            print(BYE, end=" ")
-            break
-
-        if is_valid_word(word, hand, word_list):
-            score += update_and_print_score(score, word, n)
-            hand = update_hand(hand, word)
-        else:
-            print(INVALID_WORD_MESSAGE)
-        print()
-
-    if calculate_hand_len(hand) == 0:
-        print(OUT_OF_LETTERS, end=" ")
-
-    print_total_score(score)
-
-
-def get_initial_valid_input():
-    action = input(PLAY_GAME_PROMPT)
-    # avoids user entering r when he hasn't played before
-    while action != "n" and action != "e":
-        if action == "r":
-            print(NO_HAND_ENTERED_YET)
-        else:
-            print(INVALID_COMMAND_MESSAGE)
-        action = input(PLAY_GAME_PROMPT)
-
-    return action
+    pass
 
 
 #
@@ -298,18 +212,7 @@ def play_game(word_list):
  
     2) When done playing the hand, repeat from step 1    
     """
-    action = get_initial_valid_input()
-
-    while action != "e":
-        if action != "n" and action != "r":
-            print(INVALID_COMMAND_MESSAGE)
-        else:
-            if action == "n":
-                hand = deal_hand(HAND_SIZE)
-            play_hand(hand, word_list, HAND_SIZE)
-            print()
-
-        action = input(PLAY_GAME_PROMPT)
+    pass
 
 
 def main():
