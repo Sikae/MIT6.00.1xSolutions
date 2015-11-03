@@ -1,4 +1,3 @@
-from ps4a import *
 import time
 
 
@@ -23,13 +22,7 @@ def get_computer_chosen_word(hand, word_list, n):
 
     returns: string or None
     """
-    best_word = ""
-
-    for word in word_list:
-        if is_valid_word(word, hand, word_list) and get_word_score(word, n) > get_word_score(best_word, n):
-            best_word = word
-
-    return best_word if best_word else None
+    pass
 
 
 #
@@ -54,35 +47,7 @@ def play_computer_hand(hand, word_list, n):
     wordList: list (string)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
-    score = 0
-    while calculate_hand_len(hand):
-        print_current_hand(hand)
-
-        if get_computer_chosen_word(hand, word_list, n) is None:
-            break
-
-        computer_word = get_computer_chosen_word(hand, word_list, n)
-        score += update_and_print_score(score, computer_word, n)
-        hand = update_hand(hand, computer_word)
-        print()
-
-    print_total_score(score)
-
-
-def get_valid_player():
-    while True:
-        player = input(PLAYER_PROMPT)
-        if player == "c" or player == "u":
-            return player
-        else:
-            print(INVALID_COMMAND_MESSAGE)
-
-
-def perform_play(player, hand, word_list, n):
-    if player == "c":
-        play_computer_hand(hand, word_list, n)
-    else:
-        play_hand(hand, word_list, n)
+    pass
 
 
 #
@@ -113,19 +78,7 @@ def play_game(word_list):
 
     wordList: list (string)
     """
-    action = get_initial_valid_input()
-
-    while action != "e":
-        if action != "n" and action != "r":
-            print(INVALID_COMMAND_MESSAGE)
-        else:
-            if action == "n":
-                hand = deal_hand(HAND_SIZE)
-            player = get_valid_player()
-            perform_play(player, hand, word_list, HAND_SIZE)
-            print()
-
-        action = input(PLAY_GAME_PROMPT)
+    pass
 
 
 def main():
