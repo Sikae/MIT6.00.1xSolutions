@@ -21,6 +21,7 @@ def process(url):
     """
     Fetches news items from the rss url and parses them.
     Returns a list of NewsStory-s.
+    :param url: a url
     """
     feed = feedparser.parse(url)
     entries = feed.entries
@@ -34,8 +35,8 @@ def process(url):
             subject = translate_html(entry.tags[0]['term'])
         except AttributeError:
             subject = ""
-        newsStory = NewsStory(guid, title, subject, summary, link)
-        ret.append(newsStory)
+        news_story = NewsStory(guid, title, subject, summary, link)
+        ret.append(news_story)
     return ret
 
 
@@ -82,6 +83,7 @@ class Trigger(object):
         """
         Returns True if an alert should be generated
         for the given news item, or False otherwise.
+        :param story: a NewsStory
         """
         raise NotImplementedError
 
@@ -108,13 +110,19 @@ class WordTrigger(Trigger):
         return False
 
 
+class TitleTrigger(WordTrigger):
+    def evaluate(self, story):
+        return WordTrigger.isWordIn(self, story.get_title())
 
 
+class SubjectTrigger(WordTrigger):
+    def evaluate(self, story):
+        return WordTrigger.isWordIn(self, story.get_subject())
 
 
-# TODO: TitleTrigger
-# TODO: SubjectTrigger
-# TODO: SummaryTrigger
+class SummaryTrigger(WordTrigger):
+    def evaluate(self, story):
+        return WordTrigger.isWordIn(self, story.get_summary())
 
 
 # Composite Triggers
@@ -284,4 +292,6 @@ if __name__ == '__main__':
     # root.title("Some RSS parser")
     # thread.start_new_thread(main_thread, (root,))
     # root.mainloop()
-    print(replace_punctuation_mark_with_a_space(r'"Soft!" he exclaimed as he threw the football.'))
+    print(replace_punctuation_mark_with_a_space(r'Microsoft recently released the Windows 8 Consumer Preview.'))
+    word_trigger = WordTrigger("soft")
+    print(word_trigger.isWordIn("Microsoft recently released the Windows 8 Consumer Preview."))
