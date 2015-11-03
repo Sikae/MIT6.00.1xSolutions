@@ -12,23 +12,23 @@ class ProblemSet7NewsStory(unittest.TestCase):
     def testNewsStoryGetGuid(self):
         story = NewsStory('test guid', 'test title', 'test subject',
                           'test summary', 'test link')
-        self.assertEquals(story.getGuid(), 'test guid')
+        self.assertEquals(story.get_guid(), 'test guid')
     def testNewsStoryGetTitle(self):
         story = NewsStory('test guid', 'test title', 'test subject',
                           'test summary', 'test link')
-        self.assertEquals(story.getTitle(), 'test title')
+        self.assertEquals(story.get_title(), 'test title')
     def testNewsStoryGetSubject(self):
         story = NewsStory('test guid', 'test title', 'test subject',
                           'test summary', 'test link')
-        self.assertEquals(story.getSubject(), 'test subject')
+        self.assertEquals(story.get_subject(), 'test subject')
     def testNewsStoryGetSummary(self):
         story = NewsStory('test guid', 'test title', 'test subject',
                           'test summary', 'test link')
-        self.assertEquals(story.getSummary(), 'test summary')
+        self.assertEquals(story.get_summary(), 'test summary')
     def testNewsStoryGetLink(self):
         story = NewsStory('test guid', 'test title', 'test subject',
                           'test summary', 'test link')
-        self.assertEquals(story.getLink(), 'test link')
+        self.assertEquals(story.get_link(), 'test link')
 
 class ProblemSet7(unittest.TestCase):
     def setUp(self):

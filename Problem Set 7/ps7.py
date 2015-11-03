@@ -8,14 +8,14 @@ from project_util import translate_html
 from Tkinter import *
 
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 #
 # Problem Set 7
 
-#======================
+# ======================
 # Code for retrieving and parsing RSS feeds
 # Do not change this code
-#======================
+# ======================
 
 def process(url):
     """
@@ -37,21 +37,45 @@ def process(url):
         newsStory = NewsStory(guid, title, subject, summary, link)
         ret.append(newsStory)
     return ret
-#======================
 
-#======================
+
+# ======================
+
+# ======================
 # Part 1
 # Data structure design
-#======================
+# ======================
 
 # Problem 1
 
-# TODO: NewsStory
+class NewsStory(object):
+    def __init__(self, guid, title, subject, summary, link):
+        self.guid = guid
+        self.title = title
+        self.subject = subject
+        self.summary = summary
+        self.link = link
 
-#======================
+    def get_guid(self):
+        return self.guid
+
+    def get_title(self):
+        return self.title
+
+    def get_subject(self):
+        return self.subject
+
+    def get_summary(self):
+        return self.summary
+
+    def get_link(self):
+        return self.link
+
+
+# ======================
 # Part 2
 # Triggers
-#======================
+# ======================
 
 class Trigger(object):
     def evaluate(self, story):
@@ -60,6 +84,7 @@ class Trigger(object):
         for the given news item, or False otherwise.
         """
         raise NotImplementedError
+
 
 # Whole Word Triggers
 # Problems 2-5
@@ -85,10 +110,10 @@ class Trigger(object):
 # TODO: PhraseTrigger
 
 
-#======================
+# ======================
 # Part 3
 # Filtering
-#======================
+# ======================
 
 def filter_stories(stories, triggerlist):
     """
@@ -100,10 +125,11 @@ def filter_stories(stories, triggerlist):
     # This is a placeholder (we're just returning all the stories, with no filtering) 
     return stories
 
-#======================
+
+# ======================
 # Part 4
 # User-Specified Triggers
-#======================
+# ======================
 
 def make_trigger(triggerMap, triggerType, params, name):
     """
@@ -134,7 +160,7 @@ def read_trigger_config(filename):
     # to read in the file and eliminate
     # blank lines and comments
     triggerfile = open(filename, "r")
-    all = [ line.rstrip() for line in triggerfile.readlines() ]
+    all = [line.rstrip() for line in triggerfile.readlines()]
     lines = []
     for line in all:
         if len(line) == 0 or line[0] == '#':
@@ -153,7 +179,7 @@ def read_trigger_config(filename):
         # Making a new trigger
         if linesplit[0] != "ADD":
             trigger = make_trigger(triggerMap, linesplit[1],
-                                  linesplit[2:], linesplit[0])
+                                   linesplit[2:], linesplit[0])
 
         # Add the triggers to the list
         else:
@@ -161,10 +187,11 @@ def read_trigger_config(filename):
                 triggers.append(triggerMap[name])
 
     return triggers
-    
+
+
 import thread
 
-SLEEPTIME = 60 #seconds -- how often we poll
+SLEEPTIME = 60  # seconds -- how often we poll
 
 
 def main_thread(master):
@@ -177,7 +204,7 @@ def main_thread(master):
         t3 = PhraseTrigger("Election")
         t4 = OrTrigger(t2, t3)
         triggerlist = [t1, t4]
-        
+
         # TODO: Problem 11
         # After implementing make_trigger, uncomment the line below:
         # triggerlist = read_trigger_config("triggers.txt")
@@ -186,14 +213,14 @@ def main_thread(master):
         frame = Frame(master)
         frame.pack(side=BOTTOM)
         scrollbar = Scrollbar(master)
-        scrollbar.pack(side=RIGHT,fill=Y)
-        
+        scrollbar.pack(side=RIGHT, fill=Y)
+
         t = "Google & Yahoo Top News"
         title = StringVar()
         title.set(t)
         ttl = Label(master, textvariable=title, font=("Helvetica", 18))
         ttl.pack(side=TOP)
-        cont = Text(master, font=("Helvetica",14), yscrollcommand=scrollbar.set)
+        cont = Text(master, font=("Helvetica", 14), yscrollcommand=scrollbar.set)
         cont.pack(side=BOTTOM)
         cont.tag_config("title", justify='center')
         button = Button(frame, text="Exit", command=root.destroy)
@@ -201,16 +228,16 @@ def main_thread(master):
 
         # Gather stories
         guidShown = []
+
         def get_cont(newstory):
-            if newstory.getGuid() not in guidShown:
-                cont.insert(END, newstory.getTitle()+"\n", "title")
+            if newstory.get_guid() not in guidShown:
+                cont.insert(END, newstory.get_title() + "\n", "title")
                 cont.insert(END, "\n---------------------------------------------------------------\n", "title")
-                cont.insert(END, newstory.getSummary())
+                cont.insert(END, newstory.get_summary())
                 cont.insert(END, "\n*********************************************************************\n", "title")
-                guidShown.append(newstory.getGuid())
+                guidShown.append(newstory.get_guid())
 
         while True:
-
             print "Polling . . .",
             # Get stories from Google's Top Stories RSS news feed
             stories = process("http://news.google.com/?output=rss")
@@ -224,7 +251,6 @@ def main_thread(master):
             map(get_cont, stories)
             scrollbar.config(command=cont.yview)
 
-
             print "Sleeping..."
             time.sleep(SLEEPTIME)
 
@@ -233,9 +259,7 @@ def main_thread(master):
 
 
 if __name__ == '__main__':
-
     root = Tk()
     root.title("Some RSS parser")
     thread.start_new_thread(main_thread, (root,))
     root.mainloop()
-
