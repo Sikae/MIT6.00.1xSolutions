@@ -9,19 +9,19 @@ import time
 #
 def get_computer_chosen_word(hand, word_list, n):
     """
-    Given a hand and a wordList, find the word that gives 
+    Given a hand and a word_list, find the word that gives
     the maximum value score, and return it.
 
     This word should be calculated by considering all the words
-    in the wordList.
+    in the word_list.
 
-    If no words in the wordList can be made from the hand, return None.
+    If no words in the word_list can be made from the hand, return None.
 
-    hand: dictionary (string -> int)
-    wordList: list (string)
-    n: integer (HAND_SIZE; i.e., hand size required for additional points)
+    :param hand: dictionary (string -> int)
+    :param word_list: list (string)
+    :param n: integer (HAND_SIZE; i.e., hand size required for additional points)
 
-    returns: string or None
+    :returns: string or None
     """
     best_word = ""
 
@@ -50,9 +50,9 @@ def play_computer_hand(hand, word_list, n):
     5)  The hand finishes when the computer has exhausted its possible
     choices (i.e. compChooseWord returns None).
  
-    hand: dictionary (string -> int)
-    wordList: list (string)
-    n: integer (HAND_SIZE; i.e., hand size required for additional points)
+    :param hand: dictionary (string -> int)
+    :param word_list: list (string)
+    :param n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
     score = 0
     while calculate_hand_len(hand):
@@ -111,7 +111,7 @@ def play_game(word_list):
 
     4) After the computer or user has played the hand, repeat from step 1
 
-    wordList: list (string)
+    :param word_list: list (string)
     """
     action = get_initial_valid_input()
 

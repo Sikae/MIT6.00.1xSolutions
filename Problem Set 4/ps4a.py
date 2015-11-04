@@ -44,12 +44,10 @@ def load_words():
 
 def get_frequency_dict(sequence):
     """
-    Returns a dictionary where the keys are elements of the sequence
-    and the values are integer counts, for the number of times that
-    an element is repeated in the sequence.
-
-    sequence: string or list
-    return: dictionary
+    :param sequence: string or list
+    :returns: Returns a dictionary where the keys are elements of the
+    sequence and the values are integer counts, for the number of times
+    that an element is repeated in the sequence.
     """
     # freq: dictionary (element_type -> int)
     freq = {}
@@ -66,8 +64,6 @@ def get_frequency_dict(sequence):
 #
 def get_word_score(word, n):
     """
-    Returns the score for a word. Assumes the word is a valid word.
-
     The score for a word is the sum of the points for letters in the
     word, multiplied by the length of the word, PLUS 50 points if all n
     letters are used on the first turn.
@@ -75,9 +71,9 @@ def get_word_score(word, n):
     Letters are scored as in Scrabble; A is worth 1, B is worth 3, C is
     worth 3, D is worth 2, E is worth 1, and so on (see SCRABBLE_LETTER_VALUES)
 
-    word: string (lowercase letters)
-    n: integer (HAND_SIZE; i.e., hand size required for additional points)
-    returns: int >= 0
+    :param word: string (lowercase letters)
+    :param n: integer (HAND_SIZE; i.e., hand size required for additional points)
+    :returns: the score for a word. Assumes the word is a valid word. (int >= 0)
     """
     score = 0
 
@@ -95,12 +91,12 @@ def display_hand(hand):
     Displays the letters currently in the hand.
 
     For example:
-    >>> display_hand({'a':1, 'x':2, 'l':3, 'e':1})
+    display_hand({'a':1, 'x':2, 'l':3, 'e':1})
     Should print out something like:
        a x x l l l e
     The order of the letters is unimportant.
 
-    hand: dictionary (string -> int)
+    :param hand: dictionary (string -> int)
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
@@ -113,15 +109,13 @@ def display_hand(hand):
 #
 def deal_hand(n):
     """
-    Returns a random hand containing n lowercase letters.
-    At least n/3 the letters in the hand should be VOWELS.
-
     Hands are represented as dictionaries. The keys are
     letters and the values are the number of times the
     particular letter is repeated in that hand.
 
-    n: int >= 0
-    returns: dictionary (string -> int)
+    :param n: int >= 0
+    :returns: dictionary (string -> int). Returns a random hand containing
+    n lowercase letters. At least n/3 the letters in the hand should be VOWELS.
     """
     hand = {}
     num_vowels = n // 3
@@ -152,9 +146,9 @@ def update_hand(hand, word):
 
     Has no side effects: does not modify hand.
 
-    word: string
-    hand: dictionary (string -> int)    
-    returns: dictionary (string -> int)
+    :param word: string
+    :param hand: dictionary (string -> int)
+    :returns: dictionary (string -> int).
     """
     updated_hand = hand.copy()
     letter_frequency = get_frequency_dict(word)
@@ -170,14 +164,13 @@ def update_hand(hand, word):
 #
 def is_valid_word(word, hand, word_list):
     """
-    Returns True if word is in the word_list and is entirely
-    composed of letters in the hand. Otherwise, returns False.
-
     Does not mutate hand or word_list.
    
-    word: string
-    hand: dictionary (string -> int)
-    word_list: list of lowercase strings
+    :param word: string
+    :param hand: dictionary (string -> int)
+    :param word_list: list of lowercase strings.
+    :returns: True if word is in the word_list and is entirely
+    composed of letters in the hand. Otherwise, returns False.
     """
     letter_frequency = get_frequency_dict(word)
 
@@ -193,11 +186,9 @@ def is_valid_word(word, hand, word_list):
 #
 
 def calculate_hand_len(hand):
-    """ 
-    Returns the length (number of letters) in the current hand.
-    
-    hand: dictionary (string-> int)
-    returns: integer
+    """
+    :param hand: dictionary (string-> int)
+    :returns: the length (number of letters) in the current hand.
     """
     number_of_letters = 0
 
@@ -242,10 +233,9 @@ def play_hand(hand, word_list, n):
     * The hand finishes when there are no more unused letters or the user
       inputs a "."
 
-      hand: dictionary (string -> int)
-      word_list: list of lowercase strings
-      n: integer (HAND_SIZE; i.e., hand size required for additional points)
-      
+    :param hand: dictionary (string -> int)
+    :param word_list: list of lowercase strings
+    :param n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
     score = 0
     while calculate_hand_len(hand):
@@ -297,6 +287,7 @@ def play_game(word_list):
       * If the user inputs anything else, tell them their input was invalid.
  
     2) When done playing the hand, repeat from step 1    
+    :param word_list: list of lowercase strings
     """
     action = get_initial_valid_input()
 
