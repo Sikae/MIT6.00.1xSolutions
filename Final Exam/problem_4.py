@@ -9,6 +9,15 @@ def get_sublists(L, n):
     return list_of_lists
 
 
-L = [10, 4, 6, 8, 3, 4, 5, 7, 7, 2]
-n = 4
-print(get_sublists(L, n))
+def longest_run(L):
+    current_list = longest_ascending_list = [L[0]]
+
+    for e in L[1:]:
+        if current_list[-1] <= e:
+            current_list.append(e)
+            if len(current_list) > len(longest_ascending_list):
+                longest_ascending_list = current_list
+        else:
+            current_list = [e]
+
+    return len(longest_ascending_list)
