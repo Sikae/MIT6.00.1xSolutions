@@ -6,31 +6,31 @@ class Person:
         self.name = name
 
         try:
-            firstBlank = name.rindex(' ')
-            self.lastName = name[firstBlank+1:]
+            first_blank = name.rindex(' ')
+            self.last_name = name[first_blank + 1:]
         except:
-            self.lastName = name
+            self.last_name = name
 
         self.age = None
 
-    def getLastName(self):
-        return self.lastName
+    def get_last_name(self):
+        return self.last_name
 
-    def setAge(self, age):
+    def set_age(self, age):
         """
-        :type age: an integer greter than 0
+        :type age: an integer greater than 0
         """
         self.age = age
 
-    def getAge(self):
+    def get_age(self):
         if self.age is None:
             raise ValueError
         return self.age
 
     def __lt__(self, other):
-        if self.lastName == other.lastName:
+        if self.last_name == other.lastName:
             return self.name < other.name
-        return self.lastName < other.lastName
+        return self.last_name < other.lastName
 
     def __str__(self):
         return self.name
