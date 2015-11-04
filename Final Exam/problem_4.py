@@ -1,7 +1,7 @@
 #! python3
 
 
-def get_sublists(L, n):
+def get_sub_lists(L, n):
     list_of_lists = []
     for i in range(len(L) - n + 1):
         list_of_lists.append(L[i:i + n])
