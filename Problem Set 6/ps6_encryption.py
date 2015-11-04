@@ -29,9 +29,9 @@ def is_word(word_list, word):
     """
     Determines if word is a valid word.
 
-    word_list: list of words in the dictionary.
-    word: a possible word.
-    returns True if word is in wordList.
+    :param word_list: list of words in the dictionary.
+    :param word: a possible word.
+    :returns: True if word is in word_list.
     """
     word = word.lower()
     word = word.strip(" !@#$%^&*()-_+={}[]|\\:;'<>?,./\"")
@@ -42,18 +42,18 @@ def random_word(word_list):
     """
     Returns a random word.
 
-    word_list: list of words
-    returns: a word from wordList at random
+    :param word_list: list of words
+    :returns: a word from word_list at random
     """
     return random.choice(word_list)
 
 
 def random_string(word_list, n):
     """
-    Returns a string containing n random words from wordList
+    Returns a string containing n random words from word_list
 
-    wordList: list of words
-    returns: a string of random words separated by spaces.
+    :param word_list: list of words
+    :returns: a string of random words separated by spaces.
     """
     return " ".join([random_word(word_list) for _ in range(n)])
 
@@ -63,9 +63,9 @@ def random_scrambled(word_list, n):
     Generates a test string by generating an n-word random string
     and encrypting it with a sequence of random shifts.
 
-    word_list: list of words
-    n: number of random words to generate and scamble
-    returns: a scrambled string of n random words
+    :param word_list: list of words
+    :param n: number of random words to generate and scamble
+    :returns: a scrambled string of n random words
 
     NOTE:
     This function will ONLY work once you have completed your
@@ -78,7 +78,7 @@ def random_scrambled(word_list, n):
 
 def get_story_string():
     """
-    Returns a story in encrypted text.
+    :returns: a story in encrypted text.
     """
     return open("story.txt", "r").read()
 
@@ -109,8 +109,8 @@ def build_coder(shift):
     The cipher is defined by the shift value. Ignores non-letter characters
     like punctuation, numbers and spaces.
 
-    shift: 0 <= int < 26
-    returns: dict
+    :param shift: 0 <= int < 26
+    :returns: dict
     """
     shifted_dictionary = {}
     shift_lower_case_letters(shifted_dictionary, shift)
@@ -123,9 +123,9 @@ def apply_coder(text, coder):
     """
     Applies the coder to the text. Returns the encoded text.
 
-    text: string
-    coder: dict with mappings of characters to shifted characters
-    returns: text after mapping coder chars to original text
+    :param text: string
+    :param coder: dict with mappings of characters to shifted characters
+    :returns: text after mapping coder chars to original text
     """
     cyphertext = ""
 
@@ -145,9 +145,9 @@ def apply_shift(text, shift):
     letters should remain upper case, and all other punctuation should
     stay as it is.
 
-    text: string to apply the shift to
-    shift: amount to shift the text (0 <= int < 26)
-    returns: text after being shifted by specified amount.
+    :param text: string to apply the shift to
+    :param shift: amount to shift the text (0 <= int < 26)
+    :returns: text after being shifted by specified amount.
     """
     return apply_coder(text, build_coder(shift))
 
@@ -169,8 +169,9 @@ def find_best_shift(word_list, text):
     """
     Finds a shift key that can decrypt the encoded text.
 
-    text: string
-    returns: 0 <= int < 26
+    :param word_list: a lists of words
+    :param text: string
+    :returns: 0 <= int < 26
     """
     best_shift = 0
     max_number_of_valid_words = 0
@@ -194,7 +195,7 @@ def decrypt_story():
     Use the functions get_story_string and loadWords to get the
     raw data you need.
 
-    returns: string - story in plain text
+    :returns: string - story in plain text
     """
     story = get_story_string()
     word_list = load_words()

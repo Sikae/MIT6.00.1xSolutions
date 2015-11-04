@@ -15,8 +15,8 @@ def reverse_string(character_string):
     The only character_string operations you are allowed to use are indexing,
     slicing, and concatenation.
     
-    character_string: a character_string
-    returns: a reversed character_string
+    :param character_string: a character_string
+    :returns: a reversed character_string
     """
     if len(character_string) == 1:
         return character_string
@@ -36,9 +36,9 @@ def x_ian(x, word):
     x_ian('eric', 'cerium') -> False
     x_ian('john', 'mahjong') -> False
 
-    x: a string
-    word: a string
-    returns: True if word is x_ian, False otherwise
+    :param x: a string
+    :param word: a string
+    :returns: True if word is x_ian, False otherwise
     """
     if len(x) == 1:
         return x in word
@@ -58,10 +58,10 @@ def insert_new_lines(text, line_length):
     Insert a newline character ("\n") after each word that reaches or exceeds
     the desired line length.
 
-    text: a string containing the text to wrap.
+    :param text: a string containing the text to wrap.
     line_length: the number of characters to include on a line before wrapping
         the next word.
-    returns: a string, with newline characters inserted appropriately. 
+    :returns: a string, with newline characters inserted appropriately.
     """
     if len(text) <= line_length:
         return text
