@@ -47,15 +47,10 @@ class USResident(Person):
         status: a string, one of "citizen", "legal_resident", "illegal_resident"
         Raises a ValueError if status is not one of those 3 strings
         """
-        super().__init__(name)
-
-        if status not in ["citizen", "legal_resident", "illegal_resident"]:
-            raise ValueError
-
-        self.status = status
+        pass
 
     def get_status(self):
         """
         Returns the status
         """
-        return self.status
+        pass
