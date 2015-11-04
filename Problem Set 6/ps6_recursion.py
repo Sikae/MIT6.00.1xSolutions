@@ -50,7 +50,7 @@ def insert_new_lines(text, line_length):
     the desired line length.
 
     :param text: a string containing the text to wrap.
-    line_length: the number of characters to include on a line before wrapping
+    :param line_length: the number of characters to include on a line before wrapping
         the next word.
     :returns: a string, with newline characters inserted appropriately.
     """

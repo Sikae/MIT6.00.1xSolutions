@@ -154,6 +154,7 @@ def decrypt_story():
     """
     pass
 
+
 #
 # Build data structures used for entire session and run encryption
 #
