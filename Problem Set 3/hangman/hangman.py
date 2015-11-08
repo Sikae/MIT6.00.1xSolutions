@@ -16,13 +16,13 @@ WORD_LIST_FILENAME = "words.txt"
 NUMBER_OF_GUESSES = 8
 
 # Helper Code
-# Load the list of words into the variable wordlist
+# Load the list of words into the variable word_list
 # so that it can be accessed from anywhere in the program
 
 
 def load_words():
     """
-    Returns a list of valid words. Words are strings of lowercase letters.
+    :returns: a list of valid words. Words are strings of lowercase letters.
     
     Depending on the size of the word list, this function may
     take a while to finish.
@@ -40,9 +40,9 @@ def load_words():
 
 def choose_word(word_list):
     """
-    wordlist (list): list of words (strings)
+    :param word_list: list of words (strings)
 
-    Returns a word from wordlist at random
+    :returns: a word from wordlist at random
     """
     return random.choice(word_list)
 
@@ -52,9 +52,9 @@ def choose_word(word_list):
 
 def is_word_guessed(secret_word, letters_guessed):
     """
-    secretWord: string, the word the user is guessing
-    lettersGuessed: list, what letters have been guessed so far
-    returns: boolean, True if all the letters of secretWord are in lettersGuessed;
+    :param secret_word: string, the word the user is guessing
+    :param letters_guessed: list, what letters have been guessed so far
+    :returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
     """
     for letter in secret_word:
@@ -66,9 +66,9 @@ def is_word_guessed(secret_word, letters_guessed):
 
 def get_guessed_word(secret_word, letters_guessed):
     """
-    secretWord: string, the word the user is guessing
-    lettersGuessed: list, what letters have been guessed so far
-    returns: string, comprised of letters and underscores that represents
+    :param secret_word: string, the word the user is guessing
+    :param letters_guessed: list, what letters have been guessed so far
+    :returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     """
     guessed_word = ""
@@ -112,7 +112,7 @@ def print_line_of_dashes():
 
 def hangman(secret_word):
     """
-    secretWord: string, the secret word to guess.
+    :param secret_word: string, the secret word to guess.
 
     Starts up an interactive game of Hangman.
 
