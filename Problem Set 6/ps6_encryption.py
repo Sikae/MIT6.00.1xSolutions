@@ -19,9 +19,12 @@ def load_words():
     take a while to finish.
     """
     print("Loading word list from file...")
-    in_file = open(WORD_LIST_FILENAME)
-    word_list = in_file.read().split()
+
+    with open(WORD_LIST_FILENAME) as file:
+        word_list = file.read().split()
+
     print("  ", len(word_list), "words loaded.")
+
     return word_list
 
 
