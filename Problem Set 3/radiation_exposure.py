@@ -44,9 +44,6 @@ def print_radiation_exposure(radiation):
 
 def main():
     print_radiation_exposure(radiation_exposure(0, 5, 1))
-    print_radiation_exposure(radiation_exposure(5, 11, 1))
-    print_radiation_exposure(radiation_exposure(0, 11, 1))
-    print_radiation_exposure(radiation_exposure(40, 100, 1.5))
 
 if __name__ == "__main__":
     main()
