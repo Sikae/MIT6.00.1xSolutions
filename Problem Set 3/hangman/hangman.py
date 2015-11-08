@@ -28,13 +28,13 @@ def load_words():
     take a while to finish.
     """
     print("Loading word list from file...")
-    # in_file: file
-    in_file = open(WORD_LIST_FILENAME)
-    # line: string
-    line = in_file.readline()
-    # word_list: list of strings
+
+    with open(WORD_LIST_FILENAME) as file:
+        line = file.read()
+
     word_list = line.split()
     print("  ", len(word_list), "words loaded.")
+
     return word_list
 
 
